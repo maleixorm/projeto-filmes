@@ -1,3 +1,9 @@
+.loading {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
 .lista-filmes {
     display: flex;
     justify-content: center;
