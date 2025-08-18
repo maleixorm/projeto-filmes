@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from '../../services/api';
 import './style.css';
 
 function Filme() {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [filme, setFilme] = useState({});
     const [loading, setLoading] = useState(true);
     
@@ -22,6 +23,8 @@ function Filme() {
             })
             .catch(() => {
                 console.log("Filme não encontrado!");
+                navigate("/", { replace: true });
+                return;
             })
         }
         loadFilme();
@@ -29,7 +32,7 @@ function Filme() {
         return () => {
             console.log("Componente foi desmontado!");
         }
-    }, [])
+    }, [navigate, id])
 
     if (loading) {
         return(
